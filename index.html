@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	 <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+</head>
+<body>
+	
+	<button id ="list_classes_submit">List Classes</button>
+	<div id="list_classes_display"></div>
+	
+	<input id="add_class"/>Enter Class to Add
+	<button id ="add_class_submit">Add Class</button>
+	
+	<button id="get_schedule">Get Schedule</button>
+	<div id="schedule_display"></div>
+	
+	<input id="get_class_homework_status"/>Enter Class for Homework Status
+	<button id="get_class_homework_status_submit">Get Homework Status</button>
+	
+	<input id="set_class_homework_status"/>Enter Class to set Homework Status
+	<button id="set_class_homework_status_submit">Set Class Homework Status</button>
+	
+	<button id="get_all_homework_status_submit">Get ALL Homework Status</button>
+	<div id="all_homework_display"></div>
+	
+	<button id="get_grades_submit">Get Grades</button>
+	<div id="grades_display"></>
+
+	
+
+	<script>
+
+
+
+		function listClasses() {
+			$.get("/classes", function(response) {
+				$('#list_classes_display').text(response);
+			});
+		}
+		
+		listClasses();
+		$("#list_classes_submit").click(listClasses);
+
+		
+
+		function addClass() {
+
+		}
+
+		function getGrades() {
+
+		}
+
+		function getSchedule() {
+
+		}
+
+		function getClassHomeworkStatus() {
+
+		}
+
+		function getAllHomeworkStatus() {
+
+		}
+
+		function setClassHomework() {
+
+		}
+
+
+		//
+		
+		// function sendFortune(fortuneToCreate) {
+  //           $.post("/fortune", fortuneToCreate, function(response) {
+  //               // do nothing
+  //           });
+  //       }
+
+  //       $("#sendcreatefortune").click(function() {
+  //           sendFortune($("#createfortune").val());
+  //       });
+
+
+
+  //       function getFortune() {
+  //           $.get("/fortune", function(response) {
+  //               $('#fortune').text(response);
+  //           });
+  //       }
+
+  //       getFortune();
+  //       $('#newfortune').click(getFortune);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
