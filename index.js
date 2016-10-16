@@ -23,6 +23,13 @@ var classes = [
 	}
 ];
 
+function getClassNames() {
+	var names = [];
+	for (var name in classes) {
+		names.push(name);
+	}
+}
+
 var server = http.createServer((req, res) => {
     if (req.url === "/index.html" || req.url === "/"){
         fs.readFile("index.html", (err, data) => {
@@ -34,42 +41,17 @@ var server = http.createServer((req, res) => {
         if (req.method === "GET") {
             
             console.log("Get Request Worked!");
-
-       
-				// for (var i in classes) {
-				// 	if(classes[i].name === name) {
-				// 	console.log(name);
-				// 	res.write(JSON.stringify(name));
-				// 	res.end();	
-
-
-				// 	return classes[i];
-				// 	}
-				// }
-			
-				// 	function getClassByName(name) {
-				// 		return classes[name];
-				// 		// no: classes.name
-				// 		// no: classes["name"]
-				// 	}	
-				
-				// getClassByName();
-				// 	console.log(JSON.stringify(name));
-	
-
-
-			
-				
-		
-
-
-
-            // var classList = (Object.keys(classes));
             
             res.write(JSON.stringify(classes));
             
+            getClassNames(name);
+            console.log(name);
+
+
             console.log(JSON.stringify(classes));
             
+
+
             res.end();
 
         	}
