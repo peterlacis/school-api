@@ -4,29 +4,31 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	 <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 	
 	<button id ="list_classes_submit">List Classes</button>
-	<div id="list_classes_display"></div>
+	<div id="list_classes_display"></div><br>
 	
-	<input id="add_class"/>Enter Class to Add
-	<button id ="add_class_submit">Add Class</button>
+	Enter Class to Add <input id="add_class"/>
+	<button id ="add_class_submit">Add Class</button><br><br>
 	
 	<button id="get_schedule">Get Schedule</button>
-	<div id="schedule_display"></div>
+	<div id="schedule_display"></div><br>
 	
-	<input id="get_class_homework_status"/>Enter Class for Homework Status
-	<button id="get_class_homework_status_submit">Get Homework Status</button>
+	Enter Class for Homework Status <input id="get_class_homework_status"/>
+	<button id="get_class_homework_status_submit">Get Homework Status</button><br>
+	<div id="get_class_homework_status_display"></div><br><br>
 	
-	<input id="set_class_homework_status"/>Enter Class to set Homework Status
-	<button id="set_class_homework_status_submit">Set Class Homework Status</button>
+	Enter Class to set Homework Status <input id="set_class_homework_status"/>
+	<button id="set_class_homework_status_submit">Set Class Homework Status</button><br><br>
 	
 	<button id="get_all_homework_status_submit">Get ALL Homework Status</button>
-	<div id="all_homework_display"></div>
+	<div id="all_homework_display"></div><br>
 	
 	<button id="get_grades_submit">Get Grades</button>
-	<div id="grades_display"></>
+	<div id="grades_display"></><br>
 
 	
 
@@ -35,68 +37,79 @@
 
 
 		function listClasses() {
-			$.get("/classes", function(response) {
+			$.get("/available_classes", function(response) {
 				$('#list_classes_display').text(response);
 			});
 		}
 		
-		listClasses();
+		
 		$("#list_classes_submit").click(listClasses);
 
 		
 
-		function addClass() {
-
-		}
-
-		function getGrades() {
-
-		}
-
 		function getSchedule() {
-
+			$.get("/schedule", function(response) {
+				$('#schedule_display').text(response);
+			});
 		}
-
-		function getClassHomeworkStatus() {
-
-		}
-
-		function getAllHomeworkStatus() {
-
-		}
-
-		function setClassHomework() {
-
-		}
-
-
-		//
 		
-		// function sendFortune(fortuneToCreate) {
-  //           $.post("/fortune", fortuneToCreate, function(response) {
-  //               // do nothing
-  //           });
-  //       }
+		
+		$("#get_schedule").click(getSchedule);
 
-  //       $("#sendcreatefortune").click(function() {
-  //           sendFortune($("#createfortune").val());
-  //       });
+		
+		function getAllHomeworkStatus() {
+			$.get("/all_homework", function(response) {
+				$("#all_homework_display").text(response);
+			});
+		}
 
+	
+		$("#get_all_homework_status_submit").click(getAllHomeworkStatus);
 
+		function getAllGrades() {
+			$.get("/all_grades", function(response) {
+				$("#grades_display").text(response);
+			});
+		}
 
-  //       function getFortune() {
-  //           $.get("/fortune", function(response) {
-  //               $('#fortune').text(response);
-  //           });
-  //       }
-
-  //       getFortune();
-  //       $('#newfortune').click(getFortune);
-
-
-
+		$("#get_grades_submit").click(getAllGrades);
+		
 
 
+		function addClass(classToAdd) {
+            $.post("/add_class", classToAdd, function(response) {
+                // do nothing
+            });
+        }
+
+        $("#add_class_submit").click(function() {
+            addClass($("#add_class").val());
+        });
+		
+		function getClassHomeworkStatus(classHomeworkStatus) {
+            $.post("/class_homework_status", classHomeworkStatus, function(response) {
+            $('#get_class_homework_status_display').text(response);
+            });
+
+        }
+
+        $("#get_class_homework_status_submit").click(function() {
+            getClassHomeworkStatus($("#get_class_homework_status").val());
+        });
+
+
+		function setClassHomework(setHomework) {
+            $.post("/set_homework_status", setHomework, function(response) {
+            
+            });
+
+        }
+
+        $("#set_class_homework_status_submit").click(function() {
+            setClassHomework($("#set_class_homework_status").val());
+        });
+
+		
 
 
 
